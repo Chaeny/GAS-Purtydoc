@@ -1,0 +1,83 @@
+function createReport() {
+  // Returns the active row as an array of values. Use index 0 as the first element since the selection should be a single row
+  //var numFormColumns = 16;
+  var data = SpreadsheetApp.getActiveSheet().getActiveRange().getValues();
+  //Logger.log(data[0][0]);
+  //Need to add requesting organization as a data element on the form and add to the document title
+  var doc = DocumentApp.create('Test Report-Subsections and table');
+  var body = doc.getBody();
+  //Title
+  var section = body.appendParagraph("Meeting Request for Office");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING1);
+  //Date Submitted
+  section = body.appendParagraph("Request Form Submitted:");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][0]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Tribe
+  section = body.appendParagraph("Entity:");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][9]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Meeting With
+  section = body.appendParagraph("Who are you requesting to meet with:");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][1]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Meeting Purpose and Goals
+  section = doc.appendParagraph("Meeting purposes and goals");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][2]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //POC
+  section = doc.appendParagraph("Your Organization's POC");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][3]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Meeting Ranges
+  section = doc.appendParagraph("Meeting Request Ranges");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  var rowsData = [data[0][4], " to ", data[0][5]];
+  theText = body.appendParagraph(rowsData);
+  theText.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Meeting Length
+  section = doc.appendParagraph("Meeting Length");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][6]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Participants
+  section = doc.appendParagraph("Participants");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][7]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Special Instructions
+  section = doc.appendParagraph("Special Instructions");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][8]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Add the table of extra columns from staff data
+  section = doc.appendParagraph("Staff Actions and Information");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING1);
+
+  
+  // Build a table from a dataset
+  var adminTable = body.appendTable();
+      //Row 1
+      adminTable.appendTableRow().appendTableCell().clear().appendParagraph('Potential Action to Follow up Recent Meeting').setHeading(DocumentApp.ParagraphHeading.HEADING3);
+      adminTable.getRow(0).appendTableCell().clear().appendParagraph('Chairperson or Chief Executive will be in attendance').setHeading(DocumentApp.ParagraphHeading.HEADING3);
+      //Row 2
+      adminTable.appendTableRow().appendTableCell().clear().appendParagraph(data[0][11]).setHeading(DocumentApp.ParagraphHeading.NORMAL);
+      adminTable.getRow(1).appendTableCell().clear().appendParagraph(data[0][12]).setHeading(DocumentApp.ParagraphHeading.NORMAL);
+      //Row 3
+      adminTable.appendTableRow().appendTableCell().clear().appendParagraph('Organization already met with').setHeading(DocumentApp.ParagraphHeading.HEADING3);
+      adminTable.getRow(2).appendTableCell().clear().appendParagraph('Comments').setHeading(DocumentApp.ParagraphHeading.HEADING3);
+      //Row 4
+      adminTable.appendTableRow().appendTableCell().clear().appendParagraph(data[0][13]).setHeading(DocumentApp.ParagraphHeading.NORMAL);
+      adminTable.getRow(3).appendTableCell().clear().appendParagraph(data[0][14]).setHeading(DocumentApp.ParagraphHeading.NORMAL);
+      //Row 5
+      adminTable.appendTableRow().appendTableCell().clear().appendParagraph('Follow up Request').setHeading(DocumentApp.ParagraphHeading.HEADING3);
+      adminTable.getRow(4).appendTableCell().clear().appendParagraph('Task Person').setHeading(DocumentApp.ParagraphHeading.HEADING3);
+      //Row 6
+      adminTable.appendTableRow().appendTableCell().clear().appendParagraph(data[0][15]).setHeading(DocumentApp.ParagraphHeading.NORMAL);
+      adminTable.getRow(5).appendTableCell().clear().appendParagraph(data[0][16]).setHeading(DocumentApp.ParagraphHeading.NORMAL);
+}
