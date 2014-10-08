@@ -12,65 +12,117 @@ function menuItem1() {
 
 function createReport() {
   // Returns the active row as an array of values. Use index 0 as the first element since the selection should be a single row
-  //var numFormColumns = 16;
+  //var numFormColumns = 21;
   var data = SpreadsheetApp.getActiveSheet().getActiveRange().getValues();
   //Logger.log(data[0][0]);
   //Need to add requesting organization as a data element on the form and add to the document title
-  var doc = DocumentApp.create('Test Report-Subsections and table');
+  var doc = DocumentApp.create('Sample Form Data as Document');
   var body = doc.getBody();
   //Title
-  var section = body.appendParagraph("Meeting Request for Office");
+  var section = body.appendParagraph("New Project Request Form");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING1);
   //Date Submitted
-  section = body.appendParagraph("Request Form Submitted:");
+  section = body.appendParagraph("Date Submitted:");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
   section = body.appendParagraph(data[0][0]);
   section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Tribe
-  section = body.appendParagraph("Entity:");
-  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
-  section = body.appendParagraph(data[0][9]);
-  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Meeting With
-  section = body.appendParagraph("Who are you requesting to meet with:");
+  //Project List ID
+  section = body.appendParagraph("Master Project List ID:");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
   section = body.appendParagraph(data[0][1]);
   section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Meeting Purpose and Goals
-  section = doc.appendParagraph("Meeting purposes and goals");
+  //Project Name
+  section = body.appendParagraph("Project Name:");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][1]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Divsion
+  section = doc.appendParagraph("Division");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
   section = body.appendParagraph(data[0][2]);
   section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //POC
-  section = doc.appendParagraph("Your Organization's POC");
+  //Office
+  section = doc.appendParagraph("Office");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
   section = body.appendParagraph(data[0][3]);
   section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Meeting Ranges
-  section = doc.appendParagraph("Meeting Request Ranges");
+  //Business Sponsor
+  section = doc.appendParagraph("Business Sponsor");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
-  var rowsData = [data[0][4], " to ", data[0][5]];
+  section = body.appendParagraph(data[0][4]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Business POC name and email
+  section = doc.appendParagraph("Business POC Name");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  var rowsData = [data[0][5], " reachable via ", data[0][6]];
   theText = body.appendParagraph(rowsData);
   theText.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Meeting Length
-  section = doc.appendParagraph("Meeting Length");
-  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
-  section = body.appendParagraph(data[0][6]);
-  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Participants
-  section = doc.appendParagraph("Participants");
+  //Business POC phone
+  section = doc.appendParagraph("Business POC Phone");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
   section = body.appendParagraph(data[0][7]);
   section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Special Instructions
-  section = doc.appendParagraph("Special Instructions");
+  //Description
+  section = doc.appendParagraph("Description");
   section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
   section = body.appendParagraph(data[0][8]);
   section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
-  //Add the table of extra columns from staff data
-  section = doc.appendParagraph("Staff Actions and Information");
-  section.setHeading(DocumentApp.ParagraphHeading.HEADING1);
-
+  //Target Completion Date
+  section = doc.appendParagraph("Target Completion Date");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][9]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Anticipated Staff
+  section = doc.appendParagraph("Anticipated Staff");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][10]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Align
+  section = doc.appendParagraph("Does the project align to any GPRA goals or Bureau priorities?");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][11]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Statutory
+  section = doc.appendParagraph("Does the project satisfy a statutory requirement?");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][12]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Audit
+  section = doc.appendParagraph("Does the project improve on an audit finding or reduce risk to the Bureau?");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][13]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //IRB
+  section = doc.appendParagraph("Is the project associated with an IRB investment?");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][14]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Benefits
+  section = doc.appendParagraph("What are the project benefits?");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][15]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Dependencies
+  section = doc.appendParagraph("What are the known dependencies?");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][16]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Comments
+  section = doc.appendParagraph("What are the known dependencies?");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][17]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Agile or Waterfall
+  section = doc.appendParagraph("Agile or Waterfall");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][18]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  //Project Manager
+  section = doc.appendParagraph("Project Manager");
+  section.setHeading(DocumentApp.ParagraphHeading.HEADING2);
+  section = body.appendParagraph(data[0][19]);
+  section.setHeading(DocumentApp.ParagraphHeading.NORMAL);
+  
   
   // Build a table from a dataset
   var adminTable = body.appendTable();
