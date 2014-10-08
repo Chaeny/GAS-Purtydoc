@@ -1,3 +1,15 @@
+function onOpen() {
+  var ui = SpreadsheetApp.getUi();
+  // Or DocumentApp or FormApp.
+  ui.createMenu('Export Data to Doc')
+      .addItem('Export Selected Row', 'menuItem1')
+      .addToUi();
+}
+
+function menuItem1() {
+  createReport();
+}
+
 function createReport() {
   // Returns the active row as an array of values. Use index 0 as the first element since the selection should be a single row
   //var numFormColumns = 16;
